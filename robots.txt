@@ -1,0 +1,7 @@
+# robots.txt — publicar na RAIZ do host: repositório "rodrigoxsantos10-del.github.io"
+# (o Google só lê robots.txt em https://rodrigoxsantos10-del.github.io/robots.txt,
+#  um robots.txt dentro de /msmanutencao/ é ignorado)
+User-agent: *
+Allow: /
+
+Sitemap: https://rodrigoxsantos10-del.github.io/msmanutencao/sitemap.xml
