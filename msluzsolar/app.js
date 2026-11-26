@@ -1,7 +1,7 @@
 (function(){
  const fmt=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
  const inp=document.getElementById('conta'),rng=document.getElementById('contaR');
- if(!inp)return;
+ if(inp){ // simulador (só nas páginas que têm)
  let tipo='residencial';
  // Premissas conservadoras (estimativa): tarifa média c/ impostos ~R$ 1,00/kWh; geração média ~120 kWh/mês por kWp no DF/GO;
  // economia de 75% a 90% do valor da conta (permanecem taxa mínima, iluminação pública e encargos de rede).
@@ -24,6 +24,7 @@
   document.querySelectorAll('.seg button').forEach(x=>x.setAttribute('aria-pressed','false'));
   b.setAttribute('aria-pressed','true');tipo=b.dataset.t;calc();}));
  calc();
+ }
  const f=document.getElementById('orc');
  const WEBHOOK='https://hook.us2.make.com/gjjw1e8e20fba1ljsn7djqrvyji3e2un';
  f&&f.addEventListener('submit',e=>{e.preventDefault();
@@ -40,9 +41,9 @@
   btn.disabled=true;st.textContent='Enviando...';
   const c=new AbortController(),t=setTimeout(()=>c.abort(),8000);
   fetch(WEBHOOK,{method:'POST',mode:'no-cors',body:p,signal:c.signal})
-   .then(()=>{st.innerHTML='Recebemos sua solicitação! Para agilizar, <a href="'+wa+'" target="_blank" rel="noopener">continue no WhatsApp</a>.';f.reset();
-     if(window.gtag)gtag('event','conversion',{'send_to':'AW-11471703423/8kKYCIWuragdEP-akd4q'});if(window.gtag)gtag('event','generate_lead',{empresa:'MS Luz Solar'});window.fbq&&fbq('track','Lead',{content_name:'simulacao_energia_solar'});})
-   .catch(()=>{st.textContent='Abrindo o WhatsApp para você...';window.open(wa,'_blank');})
+   .then(()=>{if(window.gtag)gtag('event','conversion',{'send_to':'AW-11471703423/8kKYCIWuragdEP-akd4q'});if(window.gtag)gtag('event','generate_lead',{empresa:'MS Luz Solar'});window.fbq&&fbq('track','Lead',{content_name:'simulacao_energia_solar'});
+     st.innerHTML='Pedido registrado! Abrindo o WhatsApp com a sua mensagem pronta — é só tocar em <b>enviar</b>. Se não abrir, <a href="'+wa+'">toque aqui</a>.';f.reset();setTimeout(()=>{location.href=wa;},900);})
+   .catch(()=>{st.innerHTML='Abrindo o WhatsApp para você enviar o pedido... Se não abrir, <a href="'+wa+'">toque aqui</a>.';location.href=wa;})
    .finally(()=>{clearTimeout(t);btn.disabled=false;});});
  // máscara de telefone
  const tf=f&&f.telefone;tf&&tf.addEventListener('input',()=>{let d=tf.value.replace(/\D/g,'').slice(0,11);

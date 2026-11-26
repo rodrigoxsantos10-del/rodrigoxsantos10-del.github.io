@@ -7,7 +7,7 @@ DIST = {"GO": ("Equatorial Goiás", "a distribuidora de energia de Goiás"), "DF
 LOCAL = {
  "luziania": {"bairros": "Centro, Setor Aeroporto, Parque Estrela Dalva, Mingone, Setor Norte, Jardim Ingá, Parque Nápolis e zona rural",
    "perfil": "Luziânia combina bairros residenciais em crescimento, comércio forte no Centro e uma grande área rural. Isso abre espaço para três tipos de projeto: telhado residencial, telhado comercial e usina em solo em chácaras e fazendas.",
-   "faq": [("Vocês são de Luziânia mesmo?", "Sim. A MS Luz Solar é a linha de energia solar da MS Manutenção, empresa de Luziânia-GO com responsável técnico registrado no CREA. A visita técnica e o pós-venda são feitos por quem está na cidade."),
+   "faq": [("Vocês são de Luziânia mesmo?", "Sim. A MS Luz Solar é a linha de energia solar da MS Manutenção, empresa de Luziânia-GO com responsável técnico registrado no CRT. A visita técnica e o pós-venda são feitos por quem está na cidade."),
            ("Atendem a zona rural de Luziânia?", "Sim. Fazemos projetos para chácaras, fazendas e granjas, inclusive com instalação em solo e uso dos créditos em outro imóvel do mesmo titular.")]},
  "brasilia-df": {"bairros": "Plano Piloto, Lago Sul, Lago Norte, Park Way, Jardim Botânico, Gama, Santa Maria, Samambaia, Taguatinga, Ceilândia, Águas Claras e Sobradinho",
    "perfil": "No DF, muitas casas térreas e sobrados com bom espaço de telhado e alto uso de ar-condicionado tornam a energia solar especialmente vantajosa. Em condomínios horizontais, verificamos também as regras internas antes do projeto.",
@@ -128,12 +128,12 @@ def run(m):
         path = f"/guia/{g['slug']}/"
         art = {"@context": "https://schema.org", "@type": "Article", "headline": g["titulo"], "description": g["desc"], "inLanguage": "pt-BR",
                "datePublished": "2026-11-26", "dateModified": "2026-11-26", "mainEntityOfPage": D + path, "image": D + "/og.jpg",
-               "author": {"@type": "Person", "name": "Rodrigo Xavier dos Santos", "jobTitle": "Eletrotécnico (CREA 06870181616)"},
+               "author": {"@type": "Person", "name": "Rodrigo Xavier dos Santos", "jobTitle": "Eletrotécnico (registro no CRT)"},
                "publisher": {"@id": D + "/#empresa"}}
         p = m.head(f"{g['titulo']} | MS Luz Solar", g["desc"], path, [art, bc(("Início", "/"), ("Guias", "/guia/"), (g["titulo"], path))])
         body = "".join(f'<h2>{t}</h2>{c.replace("{BASE}", B)}' for t, c in g["secoes"])
         p += f'''<section><div class="wrap art"><p class="crumbs"><a href="{B}">Início</a> › <a href="{B}guia/">Guias</a></p>
-<h1 style="font-size:clamp(32px,4.4vw,48px)">{g["titulo"]}</h1><p class="meta">Por Rodrigo Xavier dos Santos, eletrotécnico (CREA 06870181616) · Atualizado em 26/11/2026</p>
+<h1 style="font-size:clamp(32px,4.4vw,48px)">{g["titulo"]}</h1><p class="meta">Por Rodrigo Xavier dos Santos, eletrotécnico (registro no CRT) · Atualizado em 26/11/2026</p>
 <div class="tldr"><strong>Resposta rápida:</strong> {g["resumo"]}</div>{body}</div></section>'''
         p += sec_guias(B, exceto=g["slug"]) + m.sec_final() + m.foot()
         m.write(path.strip("/") + "/index.html", p); urls.append(D + path)
@@ -146,11 +146,11 @@ def run(m):
     # Sobre
     path = "/sobre/"
     about = {"@context": "https://schema.org", "@type": "AboutPage", "url": D + path, "about": {"@id": D + "/#empresa"}}
-    p = m.head("Sobre a MS Luz Solar | Energia solar em Luziânia-GO", "Conheça a MS Luz Solar: linha de energia solar da MS Manutenção (CNPJ 56.964.600/0001-24), de Luziânia-GO, com responsável técnico registrado no CREA.", path, [about, bc(("Início", "/"), ("Sobre", path))])
+    p = m.head("Sobre a MS Luz Solar | Energia solar em Luziânia-GO", "Conheça a MS Luz Solar: linha de energia solar da MS Manutenção (CNPJ 56.964.600/0001-24), de Luziânia-GO, com responsável técnico registrado no CRT.", path, [about, bc(("Início", "/"), ("Sobre", path))])
     p += m.hero("Sobre a <em>MS Luz Solar</em>", "Energia solar com a segurança de quem entende de instalação elétrica.", pill="Quem somos")
     p += f'''<section class="alt"><div class="wrap art">
 <h2>Quem somos</h2><p>A MS Luz Solar é a linha de energia solar fotovoltaica da <a href="https://rodrigoxsantos10-del.github.io/msmanutencao/">MS Manutenção Residencial e Industrial</a> (CNPJ 56.964.600/0001-24), empresa de Luziânia-GO especializada em instalações elétricas residenciais, comerciais, industriais e rurais e em instalação de carregadores de carro elétrico (wallbox).</p>
-<h2>Responsável técnico</h2><p>Os projetos são acompanhados por Rodrigo Xavier dos Santos, eletrotécnico registrado no CREA (06870181616). Antes de instalar o sistema solar, avaliamos também a infraestrutura elétrica do imóvel — quadro, proteção, aterramento e padrão de entrada — para garantir uma instalação segura.</p>
+<h2>Responsável técnico</h2><p>Os projetos são acompanhados por Rodrigo Xavier dos Santos, eletrotécnico registrado no CRT. Antes de instalar o sistema solar, avaliamos também a infraestrutura elétrica do imóvel — quadro, proteção, aterramento e padrão de entrada — para garantir uma instalação segura.</p>
 <h2>O que fazemos</h2><ul><li>Simulação gratuita a partir da conta de luz</li><li>Projeto e homologação junto à Equatorial Goiás e à Neoenergia Brasília</li><li>Instalação de sistemas on-grid residenciais, comerciais e rurais, em telhado ou solo</li><li>Adequação elétrica do imóvel para receber o sistema</li></ul>
 <h2>Onde atendemos</h2><p>{", ".join(f'<a href="{B}energia-solar-{c["slug"]}/">{c["nome"]}</a>' for c in m.CIDADES)} e Entorno do Distrito Federal.</p>
 <h2>Contato</h2><p>WhatsApp e telefone: <a href="tel:+5561981214135">(61) 98121-4135</a> · Segunda a sábado, das 7h às 19h · Instagram <a href="{m.IG}">@msluzsolar</a>.</p></div></section>'''

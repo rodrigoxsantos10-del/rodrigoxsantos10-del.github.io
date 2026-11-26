@@ -245,7 +245,7 @@ JS = r"""
 (function(){
  const fmt=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
  const inp=document.getElementById('conta'),rng=document.getElementById('contaR');
- if(!inp)return;
+ if(inp){ // simulador (só nas páginas que têm)
  let tipo='residencial';
  // Premissas conservadoras (estimativa): tarifa média c/ impostos ~R$ 1,00/kWh; geração média ~120 kWh/mês por kWp no DF/GO;
  // economia de 75% a 90% do valor da conta (permanecem taxa mínima, iluminação pública e encargos de rede).
@@ -268,6 +268,7 @@ JS = r"""
   document.querySelectorAll('.seg button').forEach(x=>x.setAttribute('aria-pressed','false'));
   b.setAttribute('aria-pressed','true');tipo=b.dataset.t;calc();}));
  calc();
+ }
  const f=document.getElementById('orc');
  const WEBHOOK='https://hook.us2.make.com/gjjw1e8e20fba1ljsn7djqrvyji3e2un';
  f&&f.addEventListener('submit',e=>{e.preventDefault();
@@ -284,9 +285,9 @@ JS = r"""
   btn.disabled=true;st.textContent='Enviando...';
   const c=new AbortController(),t=setTimeout(()=>c.abort(),8000);
   fetch(WEBHOOK,{method:'POST',mode:'no-cors',body:p,signal:c.signal})
-   .then(()=>{st.innerHTML='Recebemos sua solicitação! Para agilizar, <a href="'+wa+'" target="_blank" rel="noopener">continue no WhatsApp</a>.';f.reset();
-     if(window.gtag)gtag('event','conversion',{'send_to':'AW-11471703423/8kKYCIWuragdEP-akd4q'});if(window.gtag)gtag('event','generate_lead',{empresa:'MS Luz Solar'});window.fbq&&fbq('track','Lead',{content_name:'simulacao_energia_solar'});})
-   .catch(()=>{st.textContent='Abrindo o WhatsApp para você...';window.open(wa,'_blank');})
+   .then(()=>{if(window.gtag)gtag('event','conversion',{'send_to':'AW-11471703423/8kKYCIWuragdEP-akd4q'});if(window.gtag)gtag('event','generate_lead',{empresa:'MS Luz Solar'});window.fbq&&fbq('track','Lead',{content_name:'simulacao_energia_solar'});
+     st.innerHTML='Pedido registrado! Abrindo o WhatsApp com a sua mensagem pronta — é só tocar em <b>enviar</b>. Se não abrir, <a href="'+wa+'">toque aqui</a>.';f.reset();setTimeout(()=>{location.href=wa;},900);})
+   .catch(()=>{st.innerHTML='Abrindo o WhatsApp para você enviar o pedido... Se não abrir, <a href="'+wa+'">toque aqui</a>.';location.href=wa;})
    .finally(()=>{clearTimeout(t);btn.disabled=false;});});
  // máscara de telefone
  const tf=f&&f.telefone;tf&&tf.addEventListener('input',()=>{let d=tf.value.replace(/\D/g,'').slice(0,11);
@@ -317,7 +318,7 @@ def head(title, desc, path, extra_ld=None):
         "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "07:00", "closes": "19:00"}],
         "legalName": "MS Manutenção Residencial e Industrial", "inLanguage": "pt-BR",
         "contactPoint": {"@type": "ContactPoint", "telephone": "+55-61-98121-4135", "contactType": "customer service", "areaServed": ["BR-GO", "BR-DF"], "availableLanguage": "pt-BR"},
-        "founder": {"@type": "Person", "name": "Rodrigo Xavier dos Santos", "jobTitle": "Eletrotécnico", "hasCredential": {"@type": "EducationalOccupationalCredential", "credentialCategory": "Registro profissional CREA", "identifier": "06870181616"}},
+        "founder": {"@type": "Person", "name": "Rodrigo Xavier dos Santos", "jobTitle": "Eletrotécnico", "hasCredential": {"@type": "EducationalOccupationalCredential", "credentialCategory": "Registro profissional no CRT (Conselho Regional dos Técnicos Industriais)"}},
         "hasMap": "https://www.google.com/maps/search/?api=1&query=Luzi%C3%A2nia+GO",
         "geo": {"@type": "GeoCoordinates", "latitude": -16.2525, "longitude": -47.9501},
         "knowsAbout": ["Energia solar fotovoltaica", "Sistemas on-grid", "Homologação na distribuidora", "Autoconsumo remoto", "Energia solar rural"],
@@ -364,7 +365,7 @@ def foot():
 <div><b>Atendimento</b><a href="{wa('Olá! Vim pelo site da MS Luz Solar.')}" target="_blank" rel="noopener">WhatsApp {PHONE}</a><a href="tel:+5561981214135">Ligar: {PHONE}</a><a href="{IG}" target="_blank" rel="noopener">Instagram @msluzsolar</a><a href="{FB}" target="_blank" rel="noopener">Facebook</a><span style="display:block;margin-top:5px">Seg a sáb, 7h às 19h</span></div>
 <div><b>Cidades atendidas</b>{cid}</div>
 <div><b>Serviços e guias</b><a href="{BASE}energia-solar-residencial/">Energia solar residencial</a><a href="{BASE}energia-solar-para-empresas/">Energia solar para empresas</a><a href="{BASE}energia-solar-rural/">Energia solar rural</a><a href="{BASE}guia/">Guias de energia solar</a><a href="{BASE}sobre/">Sobre a MS Luz Solar</a><a href="https://rodrigoxsantos10-del.github.io/msmanutencao/">MS Manutenção (instalações elétricas)</a></div>
-<div class="copy">© 2026 MS Luz Solar · CNPJ 56.964.600/0001-24 · Responsável técnico: Rodrigo Xavier dos Santos, Eletrotécnico — CREA 06870181616 · Luziânia-GO · <a style="display:inline" href="{BASE}privacidade.html">Política de Privacidade</a> · <a style="display:inline" href="{BASE}termos.html">Termos de Uso</a> · Estimativas do simulador são aproximadas e não substituem a proposta técnica.</div>
+<div class="copy">© 2026 MS Luz Solar · CNPJ 56.964.600/0001-24 · Responsável técnico: Rodrigo Xavier dos Santos, Eletrotécnico — registro no CRT · Luziânia-GO · <a style="display:inline" href="{BASE}privacidade.html">Política de Privacidade</a> · <a style="display:inline" href="{BASE}termos.html">Termos de Uso</a> · Estimativas do simulador são aproximadas e não substituem a proposta técnica.</div>
 </div></footer>
 <a class="float" href="{wa('Olá! Vim pelo site da MS Luz Solar e quero uma simulação de energia solar.')}" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">{WA_SVG}</a>
 <nav class="bar" aria-label="Contato rápido"><a class="w" href="{wa('Olá! Vim pelo site da MS Luz Solar e quero uma simulação de energia solar.')}" target="_blank" rel="noopener">{WA_SVG}WhatsApp</a><a class="t" href="tel:+5561981214135">{ic("phone")}Ligar</a></nav>
@@ -411,7 +412,7 @@ def sec_passos():
          ("Projeto e homologação","Cuidamos do projeto técnico e da aprovação na distribuidora."),
          ("Instalação e economia","Equipe qualificada instala com segurança e você acompanha a geração pelo app.")]
     steps = "".join(f'<div class="step"><h3>{t}</h3><p>{d}</p></div>' for t,d in p)
-    return f'<section id="como-funciona"><div class="wrap"><div class="eyebrow">Como funciona</div><h2>Do orçamento à economia em <em>5 passos</em></h2><p class="sec-lead">Você manda a conta de luz. A gente cuida do resto.</p><div class="steps">{steps}</div><div class="cred"><div class="ic-box">{ic("shield")}</div><p><b style="color:var(--navy)">Responsabilidade técnica de verdade.</b> Projetos acompanhados por Rodrigo Xavier dos Santos, eletrotécnico registrado no CREA e responsável técnico da MS Manutenção em instalações elétricas residenciais, comerciais e industriais.</p></div></div></section>'
+    return f'<section id="como-funciona"><div class="wrap"><div class="eyebrow">Como funciona</div><h2>Do orçamento à economia em <em>5 passos</em></h2><p class="sec-lead">Você manda a conta de luz. A gente cuida do resto.</p><div class="steps">{steps}</div><div class="cred"><div class="ic-box">{ic("shield")}</div><p><b style="color:var(--navy)">Responsabilidade técnica de verdade.</b> Projetos acompanhados por Rodrigo Xavier dos Santos, eletrotécnico registrado no CRT e responsável técnico da MS Manutenção em instalações elétricas residenciais, comerciais e industriais.</p></div></div></section>'
 
 def sec_numeros():
     s = [("até 90%","de redução na conta de luz"),("25 anos","de garantia de performance das placas"),("60 meses","de validade dos créditos de energia"),("0","bateria necessária no sistema on-grid")]
@@ -511,7 +512,7 @@ def main():
 - Cidades atendidas: {cidades_txt} e Entorno do DF
 - Contato: WhatsApp e telefone (61) 98121-4135 — https://wa.me/5561981214135
 - Horário: segunda a sábado, 7h às 19h
-- Responsável técnico: Rodrigo Xavier dos Santos, eletrotécnico, CREA 06870181616
+- Responsável técnico: Rodrigo Xavier dos Santos, eletrotécnico, registro no CRT
 - Instagram: https://www.instagram.com/msluzsolar/
 
 ## Páginas
