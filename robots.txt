@@ -1,7 +1,37 @@
-# robots.txt — publicar na RAIZ do host: repositório "rodrigoxsantos10-del.github.io"
-# (o Google só lê robots.txt em https://rodrigoxsantos10-del.github.io/robots.txt,
-#  um robots.txt dentro de /msmanutencao/ é ignorado)
+# robots.txt — vale para todo o host rodrigoxsantos10-del.github.io (inclui /msmanutencao/)
+# Robôs de busca e de IA liberados para que a MS apareça no Google e nas respostas de IAs.
+
 User-agent: *
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://rodrigoxsantos10-del.github.io/msmanutencao/sitemap.xml
