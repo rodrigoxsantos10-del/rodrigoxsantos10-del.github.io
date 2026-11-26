@@ -164,6 +164,14 @@ input[type=range]{width:100%;margin:22px 0 6px;accent-color:var(--orange)}
 .note{font-size:12.5px;color:var(--sky);opacity:.85;margin-top:auto;padding-top:14px}
 .incl{list-style:none;margin-top:26px;display:grid;gap:10px;font-size:15px;color:var(--ink)}
 .incl li{padding-left:28px;position:relative}.incl li:before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;background:#E3F6EA;color:var(--green);font-weight:900;font-size:13px;display:grid;place-items:center}
+.hp{position:absolute;left:-9999px}
+.lgpd{display:flex!important;gap:10px;align-items:flex-start;font-weight:500!important;color:var(--muted)!important;font-size:13.5px!important}
+.lgpd input{width:18px!important;height:18px;margin-top:2px;flex:none;accent-color:var(--orange)}
+.st{font-size:14.5px;color:var(--navy);font-weight:600}.st a{color:var(--green)}
+.map{margin-top:22px;border-radius:18px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/10}
+.map iframe{width:100%;height:100%;border:0;display:block}
+.cred{display:flex;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-top:28px}
+.cred .ic-box{width:52px;height:52px;border-radius:14px;background:var(--navy);color:var(--sun);display:grid;place-items:center;flex:none}
 /* passos */
 .steps{counter-reset:s;display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:40px}
 .step{position:relative;padding:24px;border-radius:var(--r);background:#fff;border:1px solid var(--line)}
@@ -259,11 +267,30 @@ JS = r"""
   b.setAttribute('aria-pressed','true');tipo=b.dataset.t;calc();}));
  calc();
  const f=document.getElementById('orc');
+ const WEBHOOK='https://hook.us2.make.com/gjjw1e8e20fba1ljsn7djqrvyji3e2un';
  f&&f.addEventListener('submit',e=>{e.preventDefault();
+  const st=document.getElementById('orc-st'),btn=f.querySelector('button[type=submit]');
+  if(f.empresa_site.value)return;
+  let tel=f.telefone.value.replace(/\D/g,'');if(tel.indexOf('55')!==0)tel='55'+tel;
+  if(!f.nome.value.trim()||!f.aceite.checked||tel.length<12||tel.length>13||!f.valor.value.trim()){st.textContent='Confira nome, telefone, valor da conta e o aceite.';return;}
   const d=new FormData(f);
-  const msg=`Olá! Quero um orçamento de energia solar.\nNome: ${d.get('nome')}\nCidade: ${d.get('cidade')}\nTipo de imóvel: ${d.get('tipo')}\nValor médio da conta: R$ ${d.get('valor')}\n${d.get('obs')?'Obs.: '+d.get('obs'):''}`;
-  window.open('https://wa.me/WA_NUM?text='+encodeURIComponent(msg),'_blank');
-  if(window.gtag)gtag('event','generate_lead');});
+  const msg=`Olá! Quero uma simulação de energia solar.\nNome: ${d.get('nome')}\nCidade: ${d.get('cidade')}\nTipo de imóvel: ${d.get('tipo')}\nValor médio da conta: R$ ${d.get('valor')}${d.get('obs')?'\nObs.: '+d.get('obs'):''}`;
+  const wa='https://wa.me/WA_NUM?text='+encodeURIComponent(msg);
+  const p=new URLSearchParams({empresa:'MS Luz Solar',nome:f.nome.value.trim(),telefone:tel,cidade:d.get('cidade'),
+   tipo_servico:'Energia solar - '+d.get('tipo'),valor_conta:d.get('valor'),obs:d.get('obs')||'',origem:location.href,
+   gclid:new URLSearchParams(location.search).get('gclid')||'',data_envio:new Date().toISOString()});
+  btn.disabled=true;st.textContent='Enviando...';
+  const c=new AbortController(),t=setTimeout(()=>c.abort(),8000);
+  fetch(WEBHOOK,{method:'POST',mode:'no-cors',body:p,signal:c.signal})
+   .then(()=>{st.innerHTML='Recebemos sua solicitação! Para agilizar, <a href="'+wa+'" target="_blank" rel="noopener">continue no WhatsApp</a>.';f.reset();
+     if(window.gtag)gtag('event','conversion',{'send_to':'AW-11471703423/8kKYCIWuragdEP-akd4q'});if(window.gtag)gtag('event','generate_lead',{empresa:'MS Luz Solar'});})
+   .catch(()=>{st.textContent='Abrindo o WhatsApp para você...';window.open(wa,'_blank');})
+   .finally(()=>{clearTimeout(t);btn.disabled=false;});});
+ // conversões: cliques no WhatsApp e no telefone (mesmas ações do Google Ads da MS)
+ document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href]');if(!a||typeof gtag!=='function')return;
+  const h=a.getAttribute('href')||'';
+  if(h.indexOf('https://wa.me/')===0)gtag('event','conversion',{'send_to':'AW-11471703423/no1fCM-0yZIdEP-akd4q'});
+  else if(h.indexOf('tel:')===0)gtag('event','conversion',{'send_to':'AW-11471703423/o9v9CNK0yZIdEP-akd4q'});},true);
 })();
 """.replace("WA_NUM", WA_NUM)
 
@@ -277,8 +304,13 @@ def head(title, desc, path, extra_ld=None):
         "priceRange": "$$", "taxID": "56.964.600/0001-24", "address": {"@type": "PostalAddress", "addressLocality": "Luziânia", "addressRegion": "GO", "addressCountry": "BR"},
         "areaServed": [{"@type": "City", "name": f'{c["nome"]} - {c["uf"]}'} for c in CIDADES],
         "sameAs": [IG, FB],
-        "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "18:00"},
-                                      {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "12:00"}],
+        "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "07:00", "closes": "19:00"}],
+        "legalName": "MS Manutenção Residencial e Industrial", "inLanguage": "pt-BR",
+        "contactPoint": {"@type": "ContactPoint", "telephone": "+55-61-98121-4135", "contactType": "customer service", "areaServed": ["BR-GO", "BR-DF"], "availableLanguage": "pt-BR"},
+        "founder": {"@type": "Person", "name": "Rodrigo Xavier dos Santos", "jobTitle": "Eletrotécnico", "hasCredential": {"@type": "EducationalOccupationalCredential", "credentialCategory": "Registro profissional CREA", "identifier": "06870181616"}},
+        "hasMap": "https://www.google.com/maps/search/?api=1&query=Luzi%C3%A2nia+GO",
+        "geo": {"@type": "GeoCoordinates", "latitude": -16.2525, "longitude": -47.9501},
+        "knowsAbout": ["Energia solar fotovoltaica", "Sistemas on-grid", "Homologação na distribuidora", "Autoconsumo remoto", "Energia solar rural"],
     }]
     if extra_ld: ld += extra_ld
     return f"""<!doctype html>
@@ -288,6 +320,10 @@ def head(title, desc, path, extra_ld=None):
 <meta name="description" content="{html.escape(desc)}">
 {robots}
 <link rel="canonical" href="{url}">
+<meta name="geo.region" content="BR-GO"><meta name="geo.placename" content="Luziânia">
+<meta name="keywords" content="energia solar Luziânia, energia solar Brasília, placa solar Luziânia, energia solar Valparaíso, energia solar Cidade Ocidental, energia solar Cristalina, energia solar Jardim Ingá, painel solar DF, energia solar rural, financiamento energia solar">
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11471703423"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','AW-11471703423');gtag('config','G-Q1MKHZCG7Z');</script>
 <meta name="theme-color" content="#0A2342">
 <meta property="og:type" content="website"><meta property="og:locale" content="pt_BR"><meta property="og:site_name" content="MS Luz Solar">
 <meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(desc)}">
@@ -314,9 +350,9 @@ def foot():
 <footer><div class="wrap">
 <div><a class="brand" href="{BASE}" style="color:#fff">{LOGO}MS Luz <span>Solar</span></a>
 <p style="margin-top:14px;max-width:360px">Energia solar fotovoltaica para casas, empresas e propriedades rurais no DF e Entorno. Projeto, homologação e instalação.</p></div>
-<div><b>Atendimento</b><a href="{wa('Olá! Vim pelo site da MS Luz Solar.')}" target="_blank" rel="noopener">WhatsApp {PHONE}</a><a href="tel:+5561981214135">Ligar: {PHONE}</a><a href="{IG}" target="_blank" rel="noopener">Instagram @msluzsolar</a><a href="{FB}" target="_blank" rel="noopener">Facebook</a><span style="display:block;margin-top:5px">Seg a sex 8h–18h · Sáb 8h–12h</span></div>
+<div><b>Atendimento</b><a href="{wa('Olá! Vim pelo site da MS Luz Solar.')}" target="_blank" rel="noopener">WhatsApp {PHONE}</a><a href="tel:+5561981214135">Ligar: {PHONE}</a><a href="{IG}" target="_blank" rel="noopener">Instagram @msluzsolar</a><a href="{FB}" target="_blank" rel="noopener">Facebook</a><span style="display:block;margin-top:5px">Seg a sáb, 7h às 19h</span></div>
 <div><b>Cidades atendidas</b>{cid}</div>
-<div class="copy">© 2026 MS Luz Solar · CNPJ 56.964.600/0001-24 · Luziânia-GO · Estimativas do simulador são aproximadas e não substituem a proposta técnica.</div>
+<div class="copy">© 2026 MS Luz Solar · CNPJ 56.964.600/0001-24 · Responsável técnico: Rodrigo Xavier dos Santos, Eletrotécnico — CREA 06870181616 · Luziânia-GO · <a style="display:inline" href="{BASE}privacidade.html">Política de Privacidade</a> · <a style="display:inline" href="{BASE}termos.html">Termos de Uso</a> · Estimativas do simulador são aproximadas e não substituem a proposta técnica.</div>
 </div></footer>
 <a class="float" href="{wa('Olá! Vim pelo site da MS Luz Solar e quero uma simulação de energia solar.')}" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">{WA_SVG}</a>
 <script src="{BASE}app.js" defer></script>
@@ -361,7 +397,7 @@ def sec_passos():
          ("Projeto e homologação","Cuidamos do projeto técnico e da aprovação na distribuidora."),
          ("Instalação e economia","Equipe qualificada instala com segurança e você acompanha a geração pelo app.")]
     steps = "".join(f'<div class="step"><h3>{t}</h3><p>{d}</p></div>' for t,d in p)
-    return f'<section id="como-funciona"><div class="wrap"><div class="eyebrow">Como funciona</div><h2>Do orçamento à economia em <em>5 passos</em></h2><p class="sec-lead">Você manda a conta de luz. A gente cuida do resto.</p><div class="steps">{steps}</div></div></section>'
+    return f'<section id="como-funciona"><div class="wrap"><div class="eyebrow">Como funciona</div><h2>Do orçamento à economia em <em>5 passos</em></h2><p class="sec-lead">Você manda a conta de luz. A gente cuida do resto.</p><div class="steps">{steps}</div><div class="cred"><div class="ic-box">{ic("shield")}</div><p><b style="color:var(--navy)">Responsabilidade técnica de verdade.</b> Projetos acompanhados por Rodrigo Xavier dos Santos, eletrotécnico registrado no CREA e responsável técnico da MS Manutenção em instalações elétricas residenciais, comerciais e industriais.</p></div></div></section>'
 
 def sec_numeros():
     s = [("até 90%","de redução na conta de luz"),("25 anos","de garantia de performance das placas"),("60 meses","de validade dos créditos de energia"),("0","bateria necessária no sistema on-grid")]
@@ -377,17 +413,22 @@ def sec_contato(cidade_default=""):
     cities = "".join(f'<a href="{BASE}energia-solar-{c["slug"]}/">{ic("pin")}{c["nome"]}</a>' for c in CIDADES)
     return f'''<section id="contato"><div class="wrap"><div class="eyebrow">Contato</div><h2>Peça sua <em>simulação gratuita</em></h2><p class="sec-lead">Responda em 30 segundos e fale direto com um especialista no WhatsApp.</p>
 <div class="contact">
-<form id="orc"><label>Seu nome<input name="nome" required autocomplete="name" placeholder="Como podemos te chamar?"></label>
+<form id="orc" novalidate><input type="text" name="empresa_site" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+<label>Seu nome<input name="nome" required autocomplete="name" placeholder="Como podemos te chamar?"></label>
+<label>WhatsApp / telefone (com DDD)<input name="telefone" required inputmode="tel" autocomplete="tel" placeholder="(61) 9 0000-0000"></label>
 <div class="row2"><label>Cidade<select name="cidade">{opts}</select></label>
 <label>Tipo de imóvel<select name="tipo"><option>Casa</option><option>Empresa / comércio</option><option>Propriedade rural</option></select></label></div>
 <label>Valor médio da conta de luz (R$)<input name="valor" inputmode="numeric" required placeholder="Ex.: 450"></label>
 <label>Observações (opcional)<textarea name="obs" rows="3" placeholder="Ex.: quero instalar no telhado da garagem"></textarea></label>
-<button class="btn btn-wa" type="submit">{WA_SVG}Enviar pelo WhatsApp</button></form>
+<label class="lgpd"><input type="checkbox" name="aceite" required><span>Autorizo o uso destes dados para contato sobre a simulação, conforme a <a href="{BASE}privacidade.html">Política de Privacidade</a>.</span></label>
+<button class="btn btn-sun" type="submit">Quero minha simulação gratuita</button>
+<p id="orc-st" role="status" aria-live="polite" class="st"></p></form>
 <div><div class="ch">
 <a href="{wa('Olá! Vim pelo site da MS Luz Solar e quero uma simulação de energia solar.')}" target="_blank" rel="noopener"><div class="ico" style="background:#E3F6EA;color:var(--green)">{WA_SVG}</div><div><b>WhatsApp</b><span>{PHONE} · resposta rápida</span></div></a>
 <a href="tel:+5561981214135"><div class="ico" style="background:#FFF1CC;color:var(--orange)">{ic("phone")}</div><div><b>Telefone</b><span>{PHONE}</span></div></a>
 <a href="{IG}" target="_blank" rel="noopener"><div class="ico" style="background:#FDE7F1;color:#C13584">{ic("sun")}</div><div><b>Instagram</b><span>@msluzsolar · dicas todos os dias</span></div></a>
-</div><p style="margin-top:22px;font-weight:800;color:var(--navy)">Atendemos DF e Entorno:</p><div class="cities">{cities}</div></div>
+</div><p style="margin-top:22px;font-weight:800;color:var(--navy)">Atendemos DF e Entorno:</p><div class="cities">{cities}</div>
+<div class="map"><iframe title="Mapa da área de atendimento da MS Luz Solar — Luziânia, Entorno e DF" src="https://www.google.com/maps?q=Luzi%C3%A2nia%20-%20GO&z=9&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div></div>
 </div></div></section>'''
 
 def sec_final():
@@ -397,7 +438,7 @@ def hero(h1, lead, pill="Energia solar no DF e Entorno"):
     trust = "".join(f'<div>{ic("shield")}{t}</div>' for t in ["Simulação gratuita","Projeto e homologação inclusos","Equipamentos certificados"])
     return f'''<section class="hero"><div class="wrap"><div>
 <span class="pill">{ic("sun")}{pill}</span><h1>{h1}</h1><p class="lead">{lead}</p>
-<div class="cta-row"><a class="btn btn-wa" href="{wa('Olá! Vim pelo site da MS Luz Solar e quero uma simulação gratuita de energia solar.')}" target="_blank" rel="noopener">{WA_SVG}Simulação grátis no WhatsApp</a><a class="btn btn-ghost" href="{BASE}#simulador">Calcular minha economia</a></div>
+<div class="cta-row"><a class="btn btn-wa" href="{wa('Olá! Vim pelo site da MS Luz Solar e quero uma simulação gratuita de energia solar.')}" target="_blank" rel="noopener">{WA_SVG}Simulação grátis no WhatsApp</a><a class="btn btn-ghost" href="{BASE}#simulador">Calcular minha economia</a><a class="btn btn-ghost" href="tel:+5561981214135">{ic("phone")}Ligar: {PHONE}</a></div>
 <div class="trust">{trust}</div></div>{HERO_SVG}</div></section>'''
 
 def faq_ld():
@@ -432,10 +473,35 @@ def main():
         p += sec_beneficios() + sec_simulador() + sec_passos() + sec_faq() + sec_contato(c["nome"]) + sec_final() + foot()
         write(path.strip("/") + "/index.html", p)
         urls.append(DOMAIN + path)
+    urls += [DOMAIN + "/privacidade.html", DOMAIN + "/termos.html"]
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{u}</loc><lastmod>2026-11-26</lastmod></url>\n" for u in urls) + "</urlset>\n"
     write("sitemap.xml", sm)
     write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {DOMAIN}/sitemap.xml\n")
     write("404.html", head("Página não encontrada | MS Luz Solar", "Página não encontrada.", "/404.html") + hero("Página não <em>encontrada</em>", "Mas a sua economia está a um clique. Volte para o início ou fale com a gente no WhatsApp.") + foot())
+    legal = lambda t, body: head(f"{t} | MS Luz Solar", f"{t} do site da MS Luz Solar.", "/" + ("privacidade" if "Priv" in t else "termos") + ".html") + f'<section><div class="wrap" style="max-width:820px"><h1 style="font-size:40px">{t}</h1>{body}</div></section>' + foot()
+    write("privacidade.html", legal("Política de Privacidade", """<p class="sec-lead" style="margin-top:12px">Última atualização: 26/11/2026.</p>
+<h2 style="font-size:24px;margin-top:28px">Quem somos</h2><p>MS Luz Solar é a linha de energia solar da MS Manutenção Residencial e Industrial (CNPJ 56.964.600/0001-24), Luziânia-GO. Contato: WhatsApp (61) 98121-4135.</p>
+<h2 style="font-size:24px;margin-top:28px">Quais dados coletamos</h2><p>Nome, telefone, cidade, tipo de imóvel, valor médio da conta de luz e observações que você informa no formulário, além de dados de navegação coletados por ferramentas do Google (Google Analytics e Google Ads), como páginas visitadas e cliques nos botões de contato.</p>
+<h2 style="font-size:24px;margin-top:28px">Para que usamos</h2><p>Exclusivamente para entrar em contato sobre a simulação e a proposta de energia solar e para medir o desempenho do site e dos anúncios. Não vendemos seus dados.</p>
+<h2 style="font-size:24px;margin-top:28px">Base legal e seus direitos (LGPD)</h2><p>Tratamos os dados com base no seu consentimento (Lei 13.709/2018). Você pode pedir acesso, correção ou exclusão dos seus dados a qualquer momento pelo WhatsApp (61) 98121-4135.</p>
+<h2 style="font-size:24px;margin-top:28px">Cookies</h2><p>Usamos cookies do Google para estatísticas e mensuração de anúncios. Você pode bloqueá-los nas configurações do seu navegador.</p>"""))
+    write("termos.html", legal("Termos de Uso", """<p class="sec-lead" style="margin-top:12px">Última atualização: 26/11/2026.</p>
+<h2 style="font-size:24px;margin-top:28px">Simulador</h2><p>Os valores exibidos no simulador são estimativas aproximadas, baseadas em médias de tarifa e geração solar na região. Não constituem proposta comercial. A proposta oficial depende da análise do seu histórico de consumo, do local de instalação e das regras da distribuidora.</p>
+<h2 style="font-size:24px;margin-top:28px">Informações do site</h2><p>O conteúdo tem caráter informativo. Condições de pagamento, financiamento, prazos e garantias são definidos na proposta comercial.</p>
+<h2 style="font-size:24px;margin-top:28px">Contato</h2><p>MS Manutenção Residencial e Industrial · CNPJ 56.964.600/0001-24 · Luziânia-GO · WhatsApp (61) 98121-4135.</p>"""))
+    cidades_txt = ", ".join(f"{c['nome']}-{c['uf']}" for c in CIDADES)
+    write("llms.txt", f"""# MS Luz Solar
+> Empresa de energia solar fotovoltaica de Luziânia-GO (linha solar da MS Manutenção Residencial e Industrial, CNPJ 56.964.600/0001-24). Faz simulação gratuita, projeto, homologação na distribuidora e instalação de sistemas solares on-grid para casas, empresas e propriedades rurais.
+
+- Cidades atendidas: {cidades_txt} e Entorno do DF
+- Contato: WhatsApp e telefone (61) 98121-4135 — https://wa.me/5561981214135
+- Horário: segunda a sábado, 7h às 19h
+- Responsável técnico: Rodrigo Xavier dos Santos, eletrotécnico, CREA 06870181616
+- Instagram: https://www.instagram.com/msluzsolar/
+
+## Páginas
+- [Início]({DOMAIN}/): benefícios, simulador de economia, soluções, perguntas frequentes e contato
+""" + "".join(f"- [Energia solar em {c['nome']}]({DOMAIN}/energia-solar-{c['slug']}/)\n" for c in CIDADES))
     if FINAL: write("CNAME", "msluzsolar.com.br\n")
     print("ok", len(urls), "páginas; FINAL=", FINAL)
 
