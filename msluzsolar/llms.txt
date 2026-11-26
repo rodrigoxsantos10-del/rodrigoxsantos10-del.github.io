@@ -15,3 +15,10 @@
 - [Energia solar em Cidade Ocidental](https://msluzsolar.com.br/energia-solar-cidade-ocidental/)
 - [Energia solar em Jardim Ingá](https://msluzsolar.com.br/energia-solar-jardim-inga-luziania/)
 - [Energia solar em Cristalina](https://msluzsolar.com.br/energia-solar-cristalina/)
+- [Energia solar residencial](https://msluzsolar.com.br/energia-solar-residencial/)
+- [Energia solar para empresas](https://msluzsolar.com.br/energia-solar-para-empresas/)
+- [Energia solar rural](https://msluzsolar.com.br/energia-solar-rural/)
+- [Quanto custa energia solar e em quanto tempo ela se paga?](https://msluzsolar.com.br/guia/quanto-custa-energia-solar/): O preço de um sistema de energia solar depende principalmente do seu consumo de energia (kWh por mês), que define a potência necessária (kWp). Na maioria dos projetos residenciais e comerciais, o sistema se paga em poucos anos apenas com a economia na conta de luz e continua gerando por décadas.
+- [Lei 14.300: o que mudou na energia solar e se ainda vale a pena](https://msluzsolar.com.br/guia/lei-14300-energia-solar/): A Lei 14.300/2022 criou o marco legal da geração distribuída. Para sistemas que pediram conexão a partir de 2023, passa a ser cobrada gradualmente uma parte da tarifa de uso da rede (o chamado Fio B) sobre a energia compensada. Mesmo assim, a economia continua grande e o investimento segue vantajoso na maioria dos casos.
+- [Como funciona a energia solar on-grid, passo a passo](https://msluzsolar.com.br/guia/como-funciona-energia-solar/): No sistema on-grid, os módulos solares transformam a luz do sol em eletricidade, o inversor converte essa energia para uso na casa, e o excedente vai para a rede da distribuidora, virando créditos que abatem o consumo da noite e dos meses seguintes. Não é preciso bateria.
+- [Sobre](https://msluzsolar.com.br/sobre/)

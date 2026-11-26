@@ -17,8 +17,9 @@
   const msg=`Olá! Fiz a simulação no site da MS Luz Solar. Minha conta de luz é de ${fmt(v)} por mês (${tipo}). Quero uma proposta de energia solar.`;
   document.getElementById('simWa').href='https://wa.me/5561981214135?text='+encodeURIComponent(msg);
  }
- inp.addEventListener('input',()=>{rng.value=parseFloat(inp.value.replace(/\D/g,''))||0;calc()});
- rng.addEventListener('input',()=>{inp.value=rng.value;calc()});
+ let su=false;const used=()=>{if(su)return;su=true;window.gtag&&gtag('event','simulador_uso');window.fbq&&fbq('trackCustom','SimuladorUso');};
+ inp.addEventListener('input',()=>{used();rng.value=parseFloat(inp.value.replace(/\D/g,''))||0;calc()});
+ rng.addEventListener('input',()=>{used();inp.value=rng.value;calc()});
  document.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click',()=>{
   document.querySelectorAll('.seg button').forEach(x=>x.setAttribute('aria-pressed','false'));
   b.setAttribute('aria-pressed','true');tipo=b.dataset.t;calc();}));
@@ -40,12 +41,20 @@
   const c=new AbortController(),t=setTimeout(()=>c.abort(),8000);
   fetch(WEBHOOK,{method:'POST',mode:'no-cors',body:p,signal:c.signal})
    .then(()=>{st.innerHTML='Recebemos sua solicitação! Para agilizar, <a href="'+wa+'" target="_blank" rel="noopener">continue no WhatsApp</a>.';f.reset();
-     if(window.gtag)gtag('event','conversion',{'send_to':'AW-11471703423/8kKYCIWuragdEP-akd4q'});if(window.gtag)gtag('event','generate_lead',{empresa:'MS Luz Solar'});})
+     if(window.gtag)gtag('event','conversion',{'send_to':'AW-11471703423/8kKYCIWuragdEP-akd4q'});if(window.gtag)gtag('event','generate_lead',{empresa:'MS Luz Solar'});window.fbq&&fbq('track','Lead',{content_name:'simulacao_energia_solar'});})
    .catch(()=>{st.textContent='Abrindo o WhatsApp para você...';window.open(wa,'_blank');})
    .finally(()=>{clearTimeout(t);btn.disabled=false;});});
+ // máscara de telefone
+ const tf=f&&f.telefone;tf&&tf.addEventListener('input',()=>{let d=tf.value.replace(/\D/g,'').slice(0,11);
+  tf.value=d.length>10?`(${d.slice(0,2)}) ${d.slice(2,3)} ${d.slice(3,7)}-${d.slice(7)}`:d.length>6?`(${d.slice(0,2)}) ${d.slice(2,6)}-${d.slice(6)}`:d.length>2?`(${d.slice(0,2)}) ${d.slice(2)}`:d;});
+ // eventos: início do formulário
+ let fs=false;f&&f.addEventListener('focusin',()=>{if(fs)return;fs=true;window.gtag&&gtag('event','form_start',{form:'simulacao'});});
  // conversões: cliques no WhatsApp e no telefone (mesmas ações do Google Ads da MS)
  document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href]');if(!a||typeof gtag!=='function')return;
   const h=a.getAttribute('href')||'';
-  if(h.indexOf('https://wa.me/')===0)gtag('event','conversion',{'send_to':'AW-11471703423/no1fCM-0yZIdEP-akd4q'});
-  else if(h.indexOf('tel:')===0)gtag('event','conversion',{'send_to':'AW-11471703423/o9v9CNK0yZIdEP-akd4q'});},true);
+  if(h.indexOf('https://wa.me/')===0){gtag('event','conversion',{'send_to':'AW-11471703423/no1fCM-0yZIdEP-akd4q'});gtag('event','clique_whatsapp');window.fbq&&fbq('track','Contact',{method:'whatsapp'});}
+  else if(h.indexOf('tel:')===0){gtag('event','conversion',{'send_to':'AW-11471703423/o9v9CNK0yZIdEP-akd4q'});gtag('event','clique_telefone');window.fbq&&fbq('track','Contact',{method:'telefone'});}},true);
+ // aviso de cookies
+ const ck=document.getElementById('ck');let seen=null;try{seen=localStorage.getItem('ck')}catch(e){}
+ if(ck&&!seen){ck.style.display='flex';document.getElementById('ckok').onclick=()=>{ck.style.display='none';try{localStorage.setItem('ck','1')}catch(e){}};}
 })();

@@ -6,6 +6,7 @@ PREVIEW=False -> versão final para o domínio próprio (index liberado, caminho
 Uso: python3 build.py [--final]
 """
 import json, os, sys, html
+import extra
 
 FINAL = "--final" in sys.argv
 DOMAIN = "https://msluzsolar.com.br"
@@ -211,7 +212,7 @@ form input:focus,form select:focus,form textarea:focus{outline:0;border-color:va
 .final h2{color:var(--navy);margin:0}
 .final p{font-weight:600;margin-top:10px}
 footer{background:var(--navy);color:var(--sky);padding:56px 0 100px;font-size:14.5px}
-footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
 footer b{color:#fff;display:block;margin-bottom:10px}
 footer a{color:var(--sky);text-decoration:none;display:block;margin:5px 0} footer a:hover{color:#fff}
 .copy{grid-column:1/-1;border-top:1px solid rgba(207,227,247,.15);padding-top:20px;font-size:13px}
@@ -260,8 +261,9 @@ JS = r"""
   const msg=`Olá! Fiz a simulação no site da MS Luz Solar. Minha conta de luz é de ${fmt(v)} por mês (${tipo}). Quero uma proposta de energia solar.`;
   document.getElementById('simWa').href='https://wa.me/WA_NUM?text='+encodeURIComponent(msg);
  }
- inp.addEventListener('input',()=>{rng.value=parseFloat(inp.value.replace(/\D/g,''))||0;calc()});
- rng.addEventListener('input',()=>{inp.value=rng.value;calc()});
+ let su=false;const used=()=>{if(su)return;su=true;window.gtag&&gtag('event','simulador_uso');window.fbq&&fbq('trackCustom','SimuladorUso');};
+ inp.addEventListener('input',()=>{used();rng.value=parseFloat(inp.value.replace(/\D/g,''))||0;calc()});
+ rng.addEventListener('input',()=>{used();inp.value=rng.value;calc()});
  document.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click',()=>{
   document.querySelectorAll('.seg button').forEach(x=>x.setAttribute('aria-pressed','false'));
   b.setAttribute('aria-pressed','true');tipo=b.dataset.t;calc();}));
@@ -283,14 +285,22 @@ JS = r"""
   const c=new AbortController(),t=setTimeout(()=>c.abort(),8000);
   fetch(WEBHOOK,{method:'POST',mode:'no-cors',body:p,signal:c.signal})
    .then(()=>{st.innerHTML='Recebemos sua solicitação! Para agilizar, <a href="'+wa+'" target="_blank" rel="noopener">continue no WhatsApp</a>.';f.reset();
-     if(window.gtag)gtag('event','conversion',{'send_to':'AW-11471703423/8kKYCIWuragdEP-akd4q'});if(window.gtag)gtag('event','generate_lead',{empresa:'MS Luz Solar'});})
+     if(window.gtag)gtag('event','conversion',{'send_to':'AW-11471703423/8kKYCIWuragdEP-akd4q'});if(window.gtag)gtag('event','generate_lead',{empresa:'MS Luz Solar'});window.fbq&&fbq('track','Lead',{content_name:'simulacao_energia_solar'});})
    .catch(()=>{st.textContent='Abrindo o WhatsApp para você...';window.open(wa,'_blank');})
    .finally(()=>{clearTimeout(t);btn.disabled=false;});});
+ // máscara de telefone
+ const tf=f&&f.telefone;tf&&tf.addEventListener('input',()=>{let d=tf.value.replace(/\D/g,'').slice(0,11);
+  tf.value=d.length>10?`(${d.slice(0,2)}) ${d.slice(2,3)} ${d.slice(3,7)}-${d.slice(7)}`:d.length>6?`(${d.slice(0,2)}) ${d.slice(2,6)}-${d.slice(6)}`:d.length>2?`(${d.slice(0,2)}) ${d.slice(2)}`:d;});
+ // eventos: início do formulário
+ let fs=false;f&&f.addEventListener('focusin',()=>{if(fs)return;fs=true;window.gtag&&gtag('event','form_start',{form:'simulacao'});});
  // conversões: cliques no WhatsApp e no telefone (mesmas ações do Google Ads da MS)
  document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href]');if(!a||typeof gtag!=='function')return;
   const h=a.getAttribute('href')||'';
-  if(h.indexOf('https://wa.me/')===0)gtag('event','conversion',{'send_to':'AW-11471703423/no1fCM-0yZIdEP-akd4q'});
-  else if(h.indexOf('tel:')===0)gtag('event','conversion',{'send_to':'AW-11471703423/o9v9CNK0yZIdEP-akd4q'});},true);
+  if(h.indexOf('https://wa.me/')===0){gtag('event','conversion',{'send_to':'AW-11471703423/no1fCM-0yZIdEP-akd4q'});gtag('event','clique_whatsapp');window.fbq&&fbq('track','Contact',{method:'whatsapp'});}
+  else if(h.indexOf('tel:')===0){gtag('event','conversion',{'send_to':'AW-11471703423/o9v9CNK0yZIdEP-akd4q'});gtag('event','clique_telefone');window.fbq&&fbq('track','Contact',{method:'telefone'});}},true);
+ // aviso de cookies
+ const ck=document.getElementById('ck');let seen=null;try{seen=localStorage.getItem('ck')}catch(e){}
+ if(ck&&!seen){ck.style.display='flex';document.getElementById('ckok').onclick=()=>{ck.style.display='none';try{localStorage.setItem('ck','1')}catch(e){}};}
 })();
 """.replace("WA_NUM", WA_NUM)
 
@@ -324,6 +334,7 @@ def head(title, desc, path, extra_ld=None):
 <meta name="keywords" content="energia solar Luziânia, energia solar Brasília, placa solar Luziânia, energia solar Valparaíso, energia solar Cidade Ocidental, energia solar Cristalina, energia solar Jardim Ingá, painel solar DF, energia solar rural, financiamento energia solar">
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11471703423"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','AW-11471703423');gtag('config','G-Q1MKHZCG7Z');</script>
+<script>!function(f,b,e,v,n,t,s){{if(f.fbq)return;n=f.fbq=function(){{n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)}};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1941974503226307');fbq('track','PageView');</script>
 <meta name="theme-color" content="#0A2342">
 <meta property="og:type" content="website"><meta property="og:locale" content="pt_BR"><meta property="og:site_name" content="MS Luz Solar">
 <meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(desc)}">
@@ -338,7 +349,7 @@ def head(title, desc, path, extra_ld=None):
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 <header class="top"><div class="wrap">
 <a class="brand" href="{BASE}" aria-label="MS Luz Solar — início">{LOGO}MS Luz <span>Solar</span></a>
-<nav class="nav" aria-label="Principal"><a href="{BASE}#beneficios">Benefícios</a><a href="{BASE}#simulador">Simulador</a><a href="{BASE}#como-funciona">Como funciona</a><a href="{BASE}#duvidas">Dúvidas</a><a href="{BASE}#contato">Contato</a></nav>
+<nav class="nav" aria-label="Principal"><a href="{BASE}#simulador">Simulador</a><a href="{BASE}energia-solar-residencial/">Residencial</a><a href="{BASE}energia-solar-para-empresas/">Empresas</a><a href="{BASE}energia-solar-rural/">Rural</a><a href="{BASE}guia/">Guias</a><a href="{BASE}sobre/">Sobre</a><a href="{BASE}#contato">Contato</a></nav>
 <a class="btn btn-wa" href="{wa('Olá! Vim pelo site da MS Luz Solar e quero uma simulação de energia solar.')}" target="_blank" rel="noopener">{WA_SVG}<span>Falar no WhatsApp</span></a>
 </div></header>
 <main id="conteudo">
@@ -352,9 +363,12 @@ def foot():
 <p style="margin-top:14px;max-width:360px">Energia solar fotovoltaica para casas, empresas e propriedades rurais no DF e Entorno. Projeto, homologação e instalação.</p></div>
 <div><b>Atendimento</b><a href="{wa('Olá! Vim pelo site da MS Luz Solar.')}" target="_blank" rel="noopener">WhatsApp {PHONE}</a><a href="tel:+5561981214135">Ligar: {PHONE}</a><a href="{IG}" target="_blank" rel="noopener">Instagram @msluzsolar</a><a href="{FB}" target="_blank" rel="noopener">Facebook</a><span style="display:block;margin-top:5px">Seg a sáb, 7h às 19h</span></div>
 <div><b>Cidades atendidas</b>{cid}</div>
+<div><b>Serviços e guias</b><a href="{BASE}energia-solar-residencial/">Energia solar residencial</a><a href="{BASE}energia-solar-para-empresas/">Energia solar para empresas</a><a href="{BASE}energia-solar-rural/">Energia solar rural</a><a href="{BASE}guia/">Guias de energia solar</a><a href="{BASE}sobre/">Sobre a MS Luz Solar</a><a href="https://rodrigoxsantos10-del.github.io/msmanutencao/">MS Manutenção (instalações elétricas)</a></div>
 <div class="copy">© 2026 MS Luz Solar · CNPJ 56.964.600/0001-24 · Responsável técnico: Rodrigo Xavier dos Santos, Eletrotécnico — CREA 06870181616 · Luziânia-GO · <a style="display:inline" href="{BASE}privacidade.html">Política de Privacidade</a> · <a style="display:inline" href="{BASE}termos.html">Termos de Uso</a> · Estimativas do simulador são aproximadas e não substituem a proposta técnica.</div>
 </div></footer>
 <a class="float" href="{wa('Olá! Vim pelo site da MS Luz Solar e quero uma simulação de energia solar.')}" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">{WA_SVG}</a>
+<nav class="bar" aria-label="Contato rápido"><a class="w" href="{wa('Olá! Vim pelo site da MS Luz Solar e quero uma simulação de energia solar.')}" target="_blank" rel="noopener">{WA_SVG}WhatsApp</a><a class="t" href="tel:+5561981214135">{ic("phone")}Ligar</a></nav>
+<div class="cookie" id="ck" role="dialog" aria-label="Aviso de cookies"><span>Usamos cookies para medir visitas e melhorar anúncios. Saiba mais na <a href="{BASE}privacidade.html">Política de Privacidade</a>.</span><button type="button" id="ckok">Entendi</button></div>
 <script src="{BASE}app.js" defer></script>
 </body></html>"""
 
@@ -449,7 +463,7 @@ def write(path, content):
     open(full, "w", encoding="utf-8").write(content)
 
 def main():
-    write("estilo.css", CSS.strip()); write("app.js", JS.strip())
+    write("estilo.css", CSS.strip() + extra.EXTRA_CSS); write("app.js", JS.strip())
     write("favicon.svg", LOGO.replace('class="logo-mark" ', 'xmlns="http://www.w3.org/2000/svg" '))
     write("logo.svg", LOGO.replace('class="logo-mark" ', 'xmlns="http://www.w3.org/2000/svg" '))
     idx = head("Energia Solar em Luziânia, DF e Entorno | MS Luz Solar",
@@ -457,7 +471,7 @@ def main():
                "/", [faq_ld()])
     idx += hero("Sua conta de luz <em>até 90% menor</em> com energia solar",
                 "Projeto, homologação e instalação de energia solar para casas, empresas e propriedades rurais em Luziânia, Brasília e todo o Entorno do DF.")
-    idx += sec_beneficios() + sec_simulador() + sec_solucoes() + sec_passos() + sec_numeros() + sec_faq() + sec_contato() + sec_final() + foot()
+    idx += sec_beneficios() + sec_simulador() + sec_solucoes() + sec_passos() + sec_numeros() + sec_faq() + extra.sec_guias(BASE) + sec_contato() + sec_final() + foot()
     write("index.html", idx)
     urls = [DOMAIN + "/"]
     for c in CIDADES:
@@ -470,21 +484,22 @@ def main():
                  path, [bc])
         p += hero(f"Energia solar em <em>{c['nome']}</em>", f"Reduza sua conta de luz em até 90%. Simulação gratuita, projeto, homologação e instalação para casas, empresas e área rural em {c['nome']} - {c['uf']}.", pill=f"Atendimento em {c['nome']} - {c['uf']}")
         p += f'<section class="alt"><div class="wrap"><p class="crumbs"><a href="{BASE}">Início</a> › Energia solar em {c["nome"]}</p><h2>Por que instalar energia solar em <em>{c["nome"]}</em>?</h2><p class="sec-lead">{c["texto"]} Fazemos a simulação gratuita com base na sua conta, cuidamos do projeto e da aprovação na distribuidora e entregamos o sistema funcionando.</p></div></section>'
-        p += sec_beneficios() + sec_simulador() + sec_passos() + sec_faq() + sec_contato(c["nome"]) + sec_final() + foot()
+        p += extra.local_block(sys.modules[__name__], c) + sec_simulador() + sec_beneficios() + sec_passos() + extra.sec_guias(BASE) + sec_contato(c["nome"]) + sec_final() + foot()
         write(path.strip("/") + "/index.html", p)
         urls.append(DOMAIN + path)
+    urls += extra.run(sys.modules[__name__])
     urls += [DOMAIN + "/privacidade.html", DOMAIN + "/termos.html"]
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{u}</loc><lastmod>2026-11-26</lastmod></url>\n" for u in urls) + "</urlset>\n"
     write("sitemap.xml", sm)
-    write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {DOMAIN}/sitemap.xml\n")
+    write("robots.txt", "".join(f"User-agent: {b}\nAllow: /\n\n" for b in ["*","Googlebot","Bingbot","GPTBot","OAI-SearchBot","ChatGPT-User","ClaudeBot","Claude-SearchBot","PerplexityBot","Google-Extended","Applebot-Extended"]) + f"Sitemap: {DOMAIN}/sitemap.xml\n")
     write("404.html", head("Página não encontrada | MS Luz Solar", "Página não encontrada.", "/404.html") + hero("Página não <em>encontrada</em>", "Mas a sua economia está a um clique. Volte para o início ou fale com a gente no WhatsApp.") + foot())
     legal = lambda t, body: head(f"{t} | MS Luz Solar", f"{t} do site da MS Luz Solar.", "/" + ("privacidade" if "Priv" in t else "termos") + ".html") + f'<section><div class="wrap" style="max-width:820px"><h1 style="font-size:40px">{t}</h1>{body}</div></section>' + foot()
     write("privacidade.html", legal("Política de Privacidade", """<p class="sec-lead" style="margin-top:12px">Última atualização: 26/11/2026.</p>
 <h2 style="font-size:24px;margin-top:28px">Quem somos</h2><p>MS Luz Solar é a linha de energia solar da MS Manutenção Residencial e Industrial (CNPJ 56.964.600/0001-24), Luziânia-GO. Contato: WhatsApp (61) 98121-4135.</p>
-<h2 style="font-size:24px;margin-top:28px">Quais dados coletamos</h2><p>Nome, telefone, cidade, tipo de imóvel, valor médio da conta de luz e observações que você informa no formulário, além de dados de navegação coletados por ferramentas do Google (Google Analytics e Google Ads), como páginas visitadas e cliques nos botões de contato.</p>
+<h2 style="font-size:24px;margin-top:28px">Quais dados coletamos</h2><p>Nome, telefone, cidade, tipo de imóvel, valor médio da conta de luz e observações que você informa no formulário, além de dados de navegação coletados por ferramentas do Google (Google Analytics e Google Ads) e da Meta (Pixel do Facebook/Instagram), como páginas visitadas e cliques nos botões de contato.</p>
 <h2 style="font-size:24px;margin-top:28px">Para que usamos</h2><p>Exclusivamente para entrar em contato sobre a simulação e a proposta de energia solar e para medir o desempenho do site e dos anúncios. Não vendemos seus dados.</p>
 <h2 style="font-size:24px;margin-top:28px">Base legal e seus direitos (LGPD)</h2><p>Tratamos os dados com base no seu consentimento (Lei 13.709/2018). Você pode pedir acesso, correção ou exclusão dos seus dados a qualquer momento pelo WhatsApp (61) 98121-4135.</p>
-<h2 style="font-size:24px;margin-top:28px">Cookies</h2><p>Usamos cookies do Google para estatísticas e mensuração de anúncios. Você pode bloqueá-los nas configurações do seu navegador.</p>"""))
+<h2 style="font-size:24px;margin-top:28px">Cookies</h2><p>Usamos cookies do Google e da Meta para estatísticas e mensuração de anúncios. Você pode bloqueá-los nas configurações do seu navegador.</p>"""))
     write("termos.html", legal("Termos de Uso", """<p class="sec-lead" style="margin-top:12px">Última atualização: 26/11/2026.</p>
 <h2 style="font-size:24px;margin-top:28px">Simulador</h2><p>Os valores exibidos no simulador são estimativas aproximadas, baseadas em médias de tarifa e geração solar na região. Não constituem proposta comercial. A proposta oficial depende da análise do seu histórico de consumo, do local de instalação e das regras da distribuidora.</p>
 <h2 style="font-size:24px;margin-top:28px">Informações do site</h2><p>O conteúdo tem caráter informativo. Condições de pagamento, financiamento, prazos e garantias são definidos na proposta comercial.</p>
@@ -501,7 +516,7 @@ def main():
 
 ## Páginas
 - [Início]({DOMAIN}/): benefícios, simulador de economia, soluções, perguntas frequentes e contato
-""" + "".join(f"- [Energia solar em {c['nome']}]({DOMAIN}/energia-solar-{c['slug']}/)\n" for c in CIDADES))
+""" + "".join(f"- [Energia solar em {c['nome']}]({DOMAIN}/energia-solar-{c['slug']}/)\n" for c in CIDADES) + "".join(f"- [{s['nome']}]({DOMAIN}/{s['slug']}/)\n" for s in extra.SERVICOS) + "".join(f"- [{g['titulo']}]({DOMAIN}/guia/{g['slug']}/): {g['resumo']}\n" for g in extra.GUIAS) + f"- [Sobre]({DOMAIN}/sobre/)\n")
     if FINAL: write("CNAME", "msluzsolar.com.br\n")
     print("ok", len(urls), "páginas; FINAL=", FINAL)
 
