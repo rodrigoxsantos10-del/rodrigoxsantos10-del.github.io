@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://msluzsolar.com.br/sitemap.xml
