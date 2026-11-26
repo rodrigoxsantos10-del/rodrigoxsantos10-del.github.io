@@ -1,7 +1,28 @@
 {
-  "perfil": {"conta": "accounts/112003552642316990073", "local": "locations/8965443732422881881", "nome": "MS Manutenção Elétrica (perfil verificado)"},
+  "perfil": {
+    "conta": "accounts/112003552642316990073",
+    "local": "locations/8965443732422881881",
+    "nome": "MS Manutenção Elétrica (perfil verificado)"
+  },
   "temas_usados": [
-    {"data": "2026-11-26", "tema": "quadro de distribuição / disjuntor desarmando", "foto": "quadro-distribuicao-380v.jpg", "post": "localPosts/2826473772852025634"}
+    {
+      "data": "2026-11-26",
+      "tema": "quadro de distribuição / disjuntor desarmando",
+      "foto": "quadro-distribuicao-380v.jpg",
+      "post": "localPosts/2826473772852025634"
+    },
+    {
+      "data": "2026-11-26",
+      "tema": "instalação de wallbox com quadro de proteção",
+      "foto": "social/gbp/midia/post-wallbox-chint.jpg",
+      "post": "localPosts/1692815399106929329"
+    },
+    {
+      "data": "2026-11-26",
+      "tema": "iluminação em LED e instalação elétrica comercial (clínica)",
+      "foto": "social/gbp/midia/ms-clinica-paineis-led-recepcao.jpg",
+      "post": "localPosts/8128761659759529888"
+    }
   ],
   "avaliacoes_respondidas": [
     "AbFvOqnXYKExTJYcXsR6XZL1Y4g_NslhJF-4L0dsjurN29RnbydtdZlwLAyZoX0Q4o6yWckNUdDOlw",
@@ -9,5 +30,28 @@
     "AbFvOqkErUcZYN2tH0CtECOIr7d7dGF6-20WttaHIFR0x76pt3PetJ0R9inwxe-_w55RpxNVzKthbA",
     "AbFvOqmX64Jg6R0PcUhr_QK2RitMFUiQqesdNcR8U-JQ5P3BGZX0NdqMdUYkq2Iu1EUrrUd-lq7W"
   ],
-  "aguardando_aprovacao": []
+  "aguardando_aprovacao": [],
+  "fila_posts": [
+    {
+      "tema": "instalação de wallbox em casa (garagem residencial, carregador BYD)",
+      "foto": "https://rodrigoxsantos10-del.github.io/social/gbp/midia/post-wallbox-byd.jpg"
+    },
+    {
+      "tema": "troca/reforma de quadro de distribuição com DR e DPS (quadros montados pela MS)",
+      "foto": "https://rodrigoxsantos10-del.github.io/social/gbp/midia/post-quadros.jpg"
+    },
+    {
+      "tema": "iluminação comercial com painéis de LED (loja/consultório)",
+      "foto": "https://rodrigoxsantos10-del.github.io/social/gbp/midia/ms-comercial-paineis-led.jpg"
+    },
+    {
+      "tema": "iluminação residencial com perfil de LED e spots no teto",
+      "foto": "https://rodrigoxsantos10-del.github.io/social/gbp/midia/post-led-teto.jpg"
+    },
+    {
+      "tema": "manutenção elétrica para clínicas e comércios (corredor com painéis de LED)",
+      "foto": "https://rodrigoxsantos10-del.github.io/social/gbp/midia/ms-clinica-paineis-led-corredor.jpg"
+    }
+  ],
+  "galeria_enviada_2026_11_26": "7 vídeos + 4 fotos (social/gbp/midia)"
 }
