@@ -1,0 +1,452 @@
+[
+ {
+  "id": "S01_beneficios",
+  "cover": {
+   "tag": "Energia solar",
+   "title": "5 *benefícios* de gerar sua própria energia",
+   "sub": "Por que cada vez mais famílias do DF e Goiás estão saindo do aluguel de energia."
+  },
+  "slides": [
+   {
+    "kind": "item",
+    "t": "Conta de luz lá embaixo",
+    "d": "A energia gerada no seu telhado abate o consumo e pode **reduzir a conta em até 90%**. Fica só a taxa mínima e encargos."
+   },
+   {
+    "kind": "item",
+    "t": "Proteção contra reajustes",
+    "d": "Todo ano a tarifa sobe. Quem gera a própria energia **fica muito menos exposto** às bandeiras e aumentos."
+   },
+   {
+    "kind": "item",
+    "t": "Investimento que se paga",
+    "d": "O sistema costuma se pagar **em poucos anos** com a própria economia — e continua gerando por décadas."
+   },
+   {
+    "kind": "item",
+    "t": "Imóvel mais valorizado",
+    "d": "Casa com energia solar é mais atrativa: **conta baixa é argumento de venda** e de aluguel."
+   },
+   {
+    "kind": "item",
+    "t": "Energia limpa",
+    "d": "Zero emissão na geração. Você economiza e ainda **ajuda o meio ambiente**."
+   }
+  ],
+  "caption": "☀️ 5 benefícios de gerar sua própria energia.\n\nEnergia solar não é mais luxo: é a forma mais inteligente de parar de pagar caro pela luz. Economia todo mês, proteção contra reajustes e um imóvel que vale mais.\n\nQual desses benefícios mais pesa pra você? Comenta aqui 👇\n\n📲 Simulação gratuita: mande uma foto da sua conta de luz no WhatsApp (61) 98121-4135.\n\n#energiasolar #energiasolarfotovoltaica #painelsolar #economiadeenergia #contadeluz #sustentabilidade #energialimpa #luziania #brasilia #df #goias #entornodf #msluzsolar"
+ },
+ {
+  "id": "S02_25anos",
+  "cover": {
+   "tag": "Faça a conta",
+   "title": "Quanto você vai pagar de luz nos *próximos 25 anos*?",
+   "sub": "Spoiler: dá pra comprar um carro. Ou dois."
+  },
+  "slides": [
+   {
+    "kind": "stat",
+    "big": "R$ 400",
+    "t": "por mês na conta de luz",
+    "d": "É uma conta comum numa casa com ar-condicionado, chuveiro elétrico e geladeira."
+   },
+   {
+    "kind": "stat",
+    "big": "R$ 120 mil",
+    "t": "em 25 anos",
+    "d": "Isso **sem contar os reajustes**. Com a tarifa subindo todo ano, o valor real é bem maior."
+   },
+   {
+    "kind": "stat",
+    "big": "25+ anos",
+    "t": "de vida útil das placas",
+    "d": "Os módulos solares têm garantia de performance de **até 25 anos**. É energia por décadas."
+   },
+   {
+    "kind": "item",
+    "t": "A pergunta certa",
+    "d": "Não é *“quanto custa a energia solar?”*. É **“quanto eu vou continuar pagando se não fizer nada?”**"
+   }
+  ],
+  "caption": "💸 Você já parou pra calcular quanto vai gastar de energia nos próximos 25 anos?\n\nUma conta de R$ 400 por mês vira R$ 120 mil — sem contar os reajustes. Esse dinheiro pode ficar com você.\n\nQuer ver esse cálculo com a SUA conta? A gente faz pra você 👇\n\n📲 Simulação gratuita: mande uma foto da sua conta de luz no WhatsApp (61) 98121-4135.\n\n#energiasolar #energiasolarfotovoltaica #painelsolar #economiadeenergia #contadeluz #sustentabilidade #energialimpa #luziania #brasilia #df #goias #entornodf #msluzsolar"
+ },
+ {
+  "id": "S03_comofunciona",
+  "cover": {
+   "tag": "Passo a passo",
+   "title": "Como funciona a *energia solar* na sua casa",
+   "sub": "Simples, silenciosa e sem complicação."
+  },
+  "slides": [
+   {
+    "kind": "item",
+    "t": "As placas captam o sol",
+    "d": "Os módulos fotovoltaicos transformam a luz do sol em **energia elétrica** — mesmo sem calor."
+   },
+   {
+    "kind": "item",
+    "t": "O inversor converte",
+    "d": "Ele transforma a energia das placas em **energia pronta para usar** nas tomadas da casa."
+   },
+   {
+    "kind": "item",
+    "t": "Você consome na hora",
+    "d": "Durante o dia, a casa usa **primeiro a energia do sol**. Menos energia comprada da distribuidora."
+   },
+   {
+    "kind": "item",
+    "t": "O que sobra vira crédito",
+    "d": "O excedente vai para a rede e vira **crédito de energia**, usado à noite ou nos meses seguintes."
+   },
+   {
+    "kind": "item",
+    "t": "Créditos valem 5 anos",
+    "d": "Pela regra da ANEEL, os créditos podem ser usados por **até 60 meses**."
+   }
+  ],
+  "caption": "🔆 Como a energia solar funciona na prática?\n\nPlacas captam o sol, o inversor converte, sua casa consome e o que sobra vira crédito na distribuidora. Sem bateria, sem barulho, sem complicação.\n\nSalva esse post pra mostrar pra quem ainda acha que é difícil 📌\n\n📲 Simulação gratuita: mande uma foto da sua conta de luz no WhatsApp (61) 98121-4135.\n\n#energiasolar #energiasolarfotovoltaica #painelsolar #economiadeenergia #contadeluz #sustentabilidade #energialimpa #luziania #brasilia #df #goias #entornodf #msluzsolar"
+ },
+ {
+  "id": "S04_mitos",
+  "cover": {
+   "tag": "Mito ou verdade?",
+   "title": "4 *mitos* sobre energia solar que te fazem perder dinheiro",
+   "sub": "Vamos esclarecer de uma vez."
+  },
+  "slides": [
+   {
+    "kind": "item",
+    "t": "“Em dia nublado não gera”",
+    "d": "**Mito.** A geração diminui, mas não para. E o sistema é dimensionado pela média do ano inteiro."
+   },
+   {
+    "kind": "item",
+    "t": "“Precisa de bateria”",
+    "d": "**Mito.** No sistema conectado à rede (on-grid), a própria rede funciona como “bateria” através dos créditos."
+   },
+   {
+    "kind": "item",
+    "t": "“A manutenção é cara”",
+    "d": "**Mito.** Basicamente limpeza periódica das placas e acompanhamento da geração pelo aplicativo."
+   },
+   {
+    "kind": "item",
+    "t": "“Quando falta luz, continuo com energia”",
+    "d": "**Atenção:** no on-grid o sistema desliga por segurança quando a rede cai. Para isso existem soluções com bateria."
+   }
+  ],
+  "caption": "🤔 Mito ou verdade?\n\nMuita gente deixa de economizar por causa de informação errada. Arrasta pro lado e confira os 4 mitos mais comuns sobre energia solar.\n\nTinha alguma dúvida que não apareceu aqui? Deixa nos comentários que a gente responde 👇\n\n📲 Simulação gratuita: mande uma foto da sua conta de luz no WhatsApp (61) 98121-4135.\n\n#energiasolar #energiasolarfotovoltaica #painelsolar #economiadeenergia #contadeluz #sustentabilidade #energialimpa #luziania #brasilia #df #goias #entornodf #msluzsolar"
+ },
+ {
+  "id": "S05_porqueagora",
+  "cover": {
+   "tag": "Por que agora?",
+   "title": "Esperar para instalar energia solar *custa caro*",
+   "sub": "3 motivos para não deixar para o ano que vem."
+  },
+  "slides": [
+   {
+    "kind": "item",
+    "t": "A tarifa não para de subir",
+    "d": "Cada mês esperando é **mais um boleto cheio** pago à distribuidora — dinheiro que não volta."
+   },
+   {
+    "kind": "item",
+    "t": "A regra ficou mais rígida",
+    "d": "Com a Lei 14.300, quem entra depois paga **uma parcela maior do uso da rede**. Esperar não melhora as condições."
+   },
+   {
+    "kind": "item",
+    "t": "Dá pra trocar conta por parcela",
+    "d": "Com financiamento solar, a parcela pode ficar **próxima do valor da conta de luz** — e um dia acaba."
+   }
+  ],
+  "caption": "⏳ O melhor momento para instalar energia solar foi ontem. O segundo melhor é hoje.\n\nA tarifa sobe, as regras de compensação ficam mais rígidas com o tempo e cada mês esperando é dinheiro que vai embora.\n\nVamos ver quanto você economizaria a partir do mês que vem?\n\n📲 Simulação gratuita: mande uma foto da sua conta de luz no WhatsApp (61) 98121-4135.\n\n#energiasolar #energiasolarfotovoltaica #painelsolar #economiadeenergia #contadeluz #sustentabilidade #energialimpa #luziania #brasilia #df #goias #entornodf #msluzsolar"
+ },
+ {
+  "id": "S06_empresas",
+  "cover": {
+   "tag": "Para empresas",
+   "title": "Sua empresa paga *caro demais* de energia?",
+   "sub": "Energia solar transforma um custo fixo em investimento."
+  },
+  "slides": [
+   {
+    "kind": "item",
+    "t": "Menos custo fixo",
+    "d": "Energia é um dos maiores custos de comércios, oficinas e indústrias. Solar **reduz esse peso todo mês**."
+   },
+   {
+    "kind": "item",
+    "t": "Previsibilidade",
+    "d": "Menos susto com bandeira tarifária e reajuste: **planejamento financeiro mais seguro**."
+   },
+   {
+    "kind": "item",
+    "t": "Retorno rápido",
+    "d": "Quem consome mais durante o dia — horário de sol — **aproveita melhor a geração**."
+   },
+   {
+    "kind": "item",
+    "t": "Imagem sustentável",
+    "d": "Clientes valorizam empresas que usam **energia limpa**. É marketing positivo para o seu negócio."
+   }
+  ],
+  "caption": "🏢 Comércio, oficina, padaria, clínica, indústria: energia pesa no caixa.\n\nCom energia solar, sua empresa reduz custo fixo, ganha previsibilidade e ainda reforça uma imagem sustentável.\n\nQuer um estudo para o seu negócio? Mande a conta de energia da empresa 👇\n\n📲 Simulação gratuita: mande uma foto da sua conta de luz no WhatsApp (61) 98121-4135.\n\n#energiasolar #energiasolarfotovoltaica #painelsolar #economiadeenergia #contadeluz #sustentabilidade #energialimpa #luziania #brasilia #df #goias #entornodf #msluzsolar"
+ },
+ {
+  "id": "S07_rural",
+  "cover": {
+   "tag": "No campo",
+   "title": "Energia solar na *propriedade rural*",
+   "sub": "Para quem produz em Luziânia, Cristalina e todo o Entorno."
+  },
+  "slides": [
+   {
+    "kind": "item",
+    "t": "Bombeamento e irrigação",
+    "d": "Bombas e irrigação consomem muito. Gerar no próprio terreno **derruba esse custo**."
+   },
+   {
+    "kind": "item",
+    "t": "Espaço não falta",
+    "d": "Dá para instalar **em solo**, sem depender do telhado, com a melhor orientação para o sol."
+   },
+   {
+    "kind": "item",
+    "t": "Ordenha, resfriamento e granja",
+    "d": "Equipamentos que funcionam o dia todo **aproveitam a energia em tempo real**."
+   },
+   {
+    "kind": "item",
+    "t": "Abata em outra unidade",
+    "d": "A energia gerada pode abater a conta de **outro imóvel do mesmo titular**, na mesma distribuidora."
+   }
+  ],
+  "caption": "🌾 Produtor rural: a energia está pesando no custo da produção?\n\nBomba, irrigação, ordenha, resfriamento… tudo isso pode ser alimentado pelo sol, com sistema instalado em solo no seu próprio terreno.\n\nAtendemos propriedades em todo o Entorno do DF. Fale com a gente 👇\n\n📲 Simulação gratuita: mande uma foto da sua conta de luz no WhatsApp (61) 98121-4135.\n\n#energiasolar #energiasolarfotovoltaica #painelsolar #economiadeenergia #contadeluz #sustentabilidade #energialimpa #luziania #brasilia #df #goias #entornodf #msluzsolar"
+ },
+ {
+  "id": "S08_remoto",
+  "cover": {
+   "tag": "Você sabia?",
+   "title": "Dá para gerar energia em um lugar e *economizar em outro*",
+   "sub": "É o autoconsumo remoto."
+  },
+  "slides": [
+   {
+    "kind": "item",
+    "t": "Como funciona",
+    "d": "Você instala o sistema em um imóvel e **usa os créditos para abater a conta de outro**."
+   },
+   {
+    "kind": "item",
+    "t": "A regra",
+    "d": "Os imóveis precisam estar **no mesmo titular (CPF ou CNPJ)** e na área da **mesma distribuidora**."
+   },
+   {
+    "kind": "item",
+    "t": "Exemplo prático",
+    "d": "Telhado pequeno no apartamento? Gere na **chácara ou no galpão** e abata a conta de casa."
+   },
+   {
+    "kind": "item",
+    "t": "Uma usina, várias contas",
+    "d": "Dá para **distribuir os créditos** entre diferentes unidades consumidoras cadastradas."
+   }
+  ],
+  "caption": "💡 Você sabia que dá para gerar energia em um imóvel e usar os créditos em outro?\n\nÉ o autoconsumo remoto: ideal para quem mora em apartamento, tem chácara ou tem mais de um imóvel no mesmo nome.\n\nMarca aqui alguém que precisa saber disso 👇\n\n📲 Simulação gratuita: mande uma foto da sua conta de luz no WhatsApp (61) 98121-4135.\n\n#energiasolar #energiasolarfotovoltaica #painelsolar #economiadeenergia #contadeluz #sustentabilidade #energialimpa #luziania #brasilia #df #goias #entornodf #msluzsolar"
+ },
+ {
+  "id": "S09_checklist",
+  "cover": {
+   "tag": "Antes de contratar",
+   "title": "5 pontos para conferir antes de *fechar sua energia solar*",
+   "sub": "Evite dor de cabeça e prejuízo."
+  },
+  "slides": [
+   {
+    "kind": "item",
+    "t": "Projeto e responsável técnico",
+    "d": "Exija projeto assinado por **profissional habilitado, com ART**."
+   },
+   {
+    "kind": "item",
+    "t": "Homologação na distribuidora",
+    "d": "O sistema só compensa energia depois de **aprovado pela distribuidora**. Confirme quem cuida disso."
+   },
+   {
+    "kind": "item",
+    "t": "Equipamentos certificados",
+    "d": "Placas e inversores com **registro no INMETRO** e marcas com assistência no Brasil."
+   },
+   {
+    "kind": "item",
+    "t": "Garantias por escrito",
+    "d": "Garantia dos módulos, do inversor e **da instalação** — tudo no contrato."
+   },
+   {
+    "kind": "item",
+    "t": "Dimensionamento correto",
+    "d": "O sistema deve ser calculado pelo **seu histórico de consumo**, não “no olho”."
+   }
+  ],
+  "caption": "✅ Vai investir em energia solar? Confira esses 5 pontos antes de assinar qualquer contrato.\n\nUm sistema bem feito dura décadas. Um mal feito vira dor de cabeça. Salve este checklist 📌\n\n📲 Simulação gratuita: mande uma foto da sua conta de luz no WhatsApp (61) 98121-4135.\n\n#energiasolar #energiasolarfotovoltaica #painelsolar #economiadeenergia #contadeluz #sustentabilidade #energialimpa #luziania #brasilia #df #goias #entornodf #msluzsolar"
+ },
+ {
+  "id": "S10_financiar",
+  "cover": {
+   "tag": "Financiamento",
+   "title": "Trocar a *conta de luz* por uma parcela que um dia acaba",
+   "sub": "Faz sentido financiar energia solar?"
+  },
+  "slides": [
+   {
+    "kind": "item",
+    "t": "Hoje",
+    "d": "Você paga a conta de luz **para sempre**, e ela sobe todo ano."
+   },
+   {
+    "kind": "item",
+    "t": "Com financiamento",
+    "d": "A economia na conta ajuda a pagar a parcela. Em muitos casos, o valor fica **bem próximo** do que você já paga."
+   },
+   {
+    "kind": "item",
+    "t": "Depois de quitar",
+    "d": "A parcela acaba e **a economia fica inteira com você** por muitos anos."
+   },
+   {
+    "kind": "item",
+    "t": "Sem descapitalizar",
+    "d": "Você não precisa tirar todo o dinheiro do bolso de uma vez. **Fazemos a simulação** com as opções disponíveis."
+   }
+  ],
+  "caption": "🏦 Financiar energia solar vale a pena?\n\nA lógica é simples: em vez de pagar a conta de luz para sempre, você paga uma parcela que tem fim — e depois disso a economia é toda sua.\n\nQuer ver a simulação com parcela e economia lado a lado? Chama a gente 👇\n\n📲 Simulação gratuita: mande uma foto da sua conta de luz no WhatsApp (61) 98121-4135.\n\n#energiasolar #energiasolarfotovoltaica #painelsolar #economiadeenergia #contadeluz #sustentabilidade #energialimpa #luziania #brasilia #df #goias #entornodf #msluzsolar"
+ },
+ {
+  "id": "S11_vidautil",
+  "cover": {
+   "tag": "Durabilidade",
+   "title": "Quanto tempo dura um *sistema de energia solar*?",
+   "sub": "Investimento para décadas."
+  },
+  "slides": [
+   {
+    "kind": "stat",
+    "big": "25 anos",
+    "t": "garantia de performance das placas",
+    "d": "Os módulos geralmente garantem **cerca de 80% da potência** após 25 anos de uso."
+   },
+   {
+    "kind": "stat",
+    "big": "10+ anos",
+    "t": "de vida útil do inversor",
+    "d": "É o equipamento que mais trabalha. Bons inversores têm **garantia longa de fábrica**."
+   },
+   {
+    "kind": "stat",
+    "big": "Poucos anos",
+    "t": "para o sistema se pagar",
+    "d": "Depois do retorno, a economia é **lucro direto** por muitos e muitos anos."
+   }
+  ],
+  "caption": "⏱️ Energia solar é para durar.\n\nPlacas com garantia de performance de até 25 anos, inversores com longa vida útil e um sistema que se paga em poucos anos. Depois disso, é economia pura.\n\n📲 Simulação gratuita: mande uma foto da sua conta de luz no WhatsApp (61) 98121-4135.\n\n#energiasolar #energiasolarfotovoltaica #painelsolar #economiadeenergia #contadeluz #sustentabilidade #energialimpa #luziania #brasilia #df #goias #entornodf #msluzsolar"
+ },
+ {
+  "id": "S12_valoriza",
+  "cover": {
+   "tag": "Patrimônio",
+   "title": "Energia solar *valoriza* o seu imóvel",
+   "sub": "Além de economizar, você constrói patrimônio."
+  },
+  "slides": [
+   {
+    "kind": "item",
+    "t": "Mais atrativo",
+    "d": "Quem compra ou aluga quer **conta baixa**. É um diferencial claro na hora de negociar."
+   },
+   {
+    "kind": "item",
+    "t": "Equipamento que fica",
+    "d": "O sistema faz parte do imóvel e **segue gerando economia** para o próximo morador."
+   },
+   {
+    "kind": "item",
+    "t": "Sustentabilidade",
+    "d": "Imóveis com energia limpa estão **cada vez mais valorizados** pelo mercado."
+   }
+  ],
+  "caption": "🏡 Energia solar não é gasto: é patrimônio.\n\nAlém de reduzir sua conta, o sistema deixa o imóvel mais atrativo para venda e aluguel. Economia hoje e valorização amanhã.\n\n📲 Simulação gratuita: mande uma foto da sua conta de luz no WhatsApp (61) 98121-4135.\n\n#energiasolar #energiasolarfotovoltaica #painelsolar #economiadeenergia #contadeluz #sustentabilidade #energialimpa #luziania #brasilia #df #goias #entornodf #msluzsolar"
+ },
+ {
+  "id": "S13_passos",
+  "cover": {
+   "tag": "Como contratar",
+   "title": "Do orçamento à economia: *6 passos* com a MS Luz Solar",
+   "sub": "A gente cuida de tudo para você."
+  },
+  "slides": [
+   {
+    "kind": "item",
+    "t": "Envie sua conta de luz",
+    "d": "Uma foto da conta pelo WhatsApp já é suficiente para começar."
+   },
+   {
+    "kind": "item",
+    "t": "Simulação gratuita",
+    "d": "Calculamos o **sistema ideal**, a economia e o tempo de retorno."
+   },
+   {
+    "kind": "item",
+    "t": "Proposta e condições",
+    "d": "Você recebe a proposta com equipamentos, garantias e **opções de pagamento**."
+   },
+   {
+    "kind": "item",
+    "t": "Projeto e homologação",
+    "d": "Cuidamos do projeto e da **aprovação na distribuidora**."
+   },
+   {
+    "kind": "item",
+    "t": "Instalação",
+    "d": "Equipe técnica qualificada instala o sistema **com segurança**."
+   },
+   {
+    "kind": "item",
+    "t": "Economia começa",
+    "d": "Sistema ligado, você acompanha a geração pelo **aplicativo**."
+   }
+  ],
+  "caption": "📋 Ter energia solar é mais simples do que parece.\n\nVocê manda a conta de luz e a gente cuida do resto: simulação, proposta, projeto, homologação e instalação.\n\nO primeiro passo leva 1 minuto 👇\n\n📲 Simulação gratuita: mande uma foto da sua conta de luz no WhatsApp (61) 98121-4135.\n\n#energiasolar #energiasolarfotovoltaica #painelsolar #economiadeenergia #contadeluz #sustentabilidade #energialimpa #luziania #brasilia #df #goias #entornodf #msluzsolar"
+ },
+ {
+  "id": "S14_faq",
+  "cover": {
+   "tag": "Perguntas frequentes",
+   "title": "4 *dúvidas* que todo mundo tem antes de instalar",
+   "sub": "Respondidas sem enrolação."
+  },
+  "slides": [
+   {
+    "kind": "item",
+    "t": "Meu telhado aguenta?",
+    "d": "Na visita técnica avaliamos a estrutura. Se não for ideal, há opções como **instalação em solo**."
+   },
+   {
+    "kind": "item",
+    "t": "Posso aumentar depois?",
+    "d": "Sim. O sistema pode ser **ampliado** se o seu consumo crescer — com novo projeto."
+   },
+   {
+    "kind": "item",
+    "t": "E se eu mudar de casa?",
+    "d": "O sistema pode ser **reinstalado** em outro imóvel, ou ficar e valorizar a venda."
+   },
+   {
+    "kind": "item",
+    "t": "Conta zera?",
+    "d": "Não totalmente: continuam a **taxa mínima** e alguns encargos. Mas a economia é grande."
+   }
+  ],
+  "caption": "❓ Tem dúvida sobre energia solar? Você não está sozinho.\n\nReunimos as 4 perguntas que mais recebemos no WhatsApp. Se a sua não está aqui, comenta que a gente responde 👇\n\n📲 Simulação gratuita: mande uma foto da sua conta de luz no WhatsApp (61) 98121-4135.\n\n#energiasolar #energiasolarfotovoltaica #painelsolar #economiadeenergia #contadeluz #sustentabilidade #energialimpa #luziania #brasilia #df #goias #entornodf #msluzsolar"
+ }
+]
