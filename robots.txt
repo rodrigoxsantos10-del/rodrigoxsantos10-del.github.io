@@ -1,4 +1,4 @@
-# robots.txt — vale para todo o host rodrigoxsantos10-del.github.io (inclui /msmanutencao/)
+# robots.txt — vale para todo o host rodrigoxsantos10-del.github.io (inclui /msmanutencao/, /msluzsolar/ e /eletrigestor/)
 # Robôs de busca e de IA liberados para que a MS apareça no Google e nas respostas de IAs.
 
 User-agent: *
@@ -35,3 +35,5 @@ User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://rodrigoxsantos10-del.github.io/msmanutencao/sitemap.xml
+Sitemap: https://rodrigoxsantos10-del.github.io/msluzsolar/sitemap.xml
+Sitemap: https://rodrigoxsantos10-del.github.io/eletrigestor/sitemap.xml

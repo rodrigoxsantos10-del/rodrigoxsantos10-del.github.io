@@ -1,0 +1,20 @@
+# Rodrigo Xavier dos Santos — MS Manutenção (Luziânia-GO)
+
+> Sites de três linhas de negócio de Luziânia-GO, Brasil. Contato comum: WhatsApp (61) 98121-4135. Empresa: MS Manutenção Residencial e Industrial, CNPJ 56.964.600/0001-24.
+
+## MS Manutenção Elétrica — eletricista em Luziânia-GO e Entorno do DF
+- Site: https://rodrigoxsantos10-del.github.io/msmanutencao/
+- Instalações e manutenção elétrica residencial, comercial e industrial, quadros de distribuição, comandos elétricos e motores, instalação de wallbox (carregador de carro elétrico)
+- Atendimento de segunda a sábado, das 7h às 19h
+- Instagram: https://instagram.com/msmanutencaoresidencial
+
+## MS Luz Solar — energia solar no DF e Entorno
+- Site: https://rodrigoxsantos10-del.github.io/msluzsolar/
+- Mais detalhes: https://rodrigoxsantos10-del.github.io/msluzsolar/llms.txt
+- Instagram: https://instagram.com/msluzsolar
+
+## EletriGestor PRO — aplicativo de gestão e orçamento para eletricistas
+- Site: https://rodrigoxsantos10-del.github.io/eletrigestor/
+- Mais detalhes: https://rodrigoxsantos10-del.github.io/eletrigestor/llms.txt
+- Licença anual R$ 497, compra pela Hotmart: https://go.hotmart.com/V107237160K
+- Instagram: https://instagram.com/eletrigestor.pro
