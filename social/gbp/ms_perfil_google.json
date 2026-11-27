@@ -22,6 +22,13 @@
       "tema": "iluminação em LED e instalação elétrica comercial (clínica)",
       "foto": "social/gbp/midia/ms-clinica-paineis-led-recepcao.jpg",
       "post": "localPosts/8128761659759529888"
+    },
+    {
+      "data": "2026-11-27",
+      "tema": "instalação de wallbox em casa (garagem residencial, carregador BYD)",
+      "foto": "social/gbp/midia/post-wallbox-byd.jpg",
+      "post": "localPosts/4018129324544437623",
+      "searchUrl": "https://local.google.com/place?id=3954836973882480379&use=posts&lpsid=CAIQACoeChxtc3BfaDpFMnM2bUl1S3h2R00wa3JoenJIeldR"
     }
   ],
   "avaliacoes_respondidas": [
@@ -32,10 +39,6 @@
   ],
   "aguardando_aprovacao": [],
   "fila_posts": [
-    {
-      "tema": "instalação de wallbox em casa (garagem residencial, carregador BYD)",
-      "foto": "https://rodrigoxsantos10-del.github.io/social/gbp/midia/post-wallbox-byd.jpg"
-    },
     {
       "tema": "troca/reforma de quadro de distribuição com DR e DPS (quadros montados pela MS)",
       "foto": "https://rodrigoxsantos10-del.github.io/social/gbp/midia/post-quadros.jpg"
