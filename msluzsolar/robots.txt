@@ -31,4 +31,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://msluzsolar.com.br/sitemap.xml
+Sitemap: https://rodrigoxsantos10-del.github.io/msluzsolar/sitemap.xml

@@ -9,7 +9,8 @@ import json, os, sys, html
 import extra
 
 FINAL = "--final" in sys.argv
-DOMAIN = "https://msluzsolar.com.br"
+# Enquanto o domínio msluzsolar.com.br não estiver no ar, o site oficial (indexável) é o do GitHub Pages.
+DOMAIN = "https://msluzsolar.com.br" if FINAL else "https://rodrigoxsantos10-del.github.io/msluzsolar"
 BASE = "/" if FINAL else "/msluzsolar/"
 OUT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 WA_NUM = "5561981214135"
@@ -307,7 +308,7 @@ JS = r"""
 
 def head(title, desc, path, extra_ld=None):
     url = DOMAIN + path
-    robots = '<meta name="robots" content="index,follow,max-image-preview:large">' if FINAL else '<meta name="robots" content="noindex">'
+    robots = '<meta name="robots" content="index,follow,max-image-preview:large">'
     ld = [{
         "@context": "https://schema.org", "@type": "LocalBusiness", "@id": DOMAIN + "/#empresa",
         "name": "MS Luz Solar", "description": "Projeto, homologação e instalação de sistemas de energia solar fotovoltaica no DF e Entorno.",
