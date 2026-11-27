@@ -351,7 +351,8 @@ def head(title, desc, path, extra_ld=None):
 <header class="top"><div class="wrap">
 <a class="brand" href="{BASE}" aria-label="MS Luz Solar — início">{LOGO}MS Luz <span>Solar</span></a>
 <nav class="nav" aria-label="Principal"><a href="{BASE}#simulador">Simulador</a><a href="{BASE}energia-solar-residencial/">Residencial</a><a href="{BASE}energia-solar-para-empresas/">Empresas</a><a href="{BASE}energia-solar-rural/">Rural</a><a href="{BASE}guia/">Guias</a><a href="{BASE}sobre/">Sobre</a><a href="{BASE}#contato">Contato</a></nav>
-<a class="btn btn-wa" href="{wa('Olá! Vim pelo site da MS Luz Solar e quero uma simulação de energia solar.')}" target="_blank" rel="noopener">{WA_SVG}<span>Falar no WhatsApp</span></a>
+<div class="top-acoes"><a class="top-ig" href="{IG}" target="_blank" rel="noopener" aria-label="Instagram @msluzsolar"><span class="ig-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></span><span class="ig-txt">@msluzsolar</span></a>
+<a class="btn btn-wa" href="{wa('Olá! Vim pelo site da MS Luz Solar e quero uma simulação de energia solar.')}" target="_blank" rel="noopener">{WA_SVG}<span>Falar no WhatsApp</span></a></div>
 </div></header>
 <main id="conteudo">
 """

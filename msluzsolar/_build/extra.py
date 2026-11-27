@@ -99,6 +99,22 @@ EXTRA_CSS = r"""
 @media (max-width:980px){.links{grid-template-columns:1fr}}
 .links a{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px}.links a:hover{border-color:var(--sun)}
 .links b{color:var(--navy);display:block;font-size:17px}.links span{color:var(--muted);font-size:14.5px}
+
+/* topo: Instagram + WhatsApp (redesign 2026-11) */
+.top-acoes{display:flex;align-items:center;gap:8px;flex:none}
+.top-ig{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:0 14px 0 6px;border:1px solid var(--line);border-radius:99px;background:#fff;color:var(--navy);text-decoration:none;font-weight:800;font-size:14px;transition:transform .15s,box-shadow .15s}
+.top-ig:hover{transform:translateY(-1px);box-shadow:0 8px 20px -10px rgba(193,53,132,.6)}
+.ig-ico{width:30px;height:30px;border-radius:50%;background:linear-gradient(45deg,#f9ce34,#ee2a7b 50%,#6228d7);color:#fff;display:grid;place-items:center;flex:none}
+.ig-ico svg{width:17px;height:17px}
+@media (max-width:1180px){.nav{gap:18px;font-size:14px}}
+@media (max-width:620px){.top .wrap{gap:8px}.top-ig{padding:0 10px 0 5px;font-size:13px}.brand{font-size:17px}.top .btn{padding:10px 12px}}
+@media (max-width:430px){.brand{font-size:15px;gap:7px;white-space:nowrap}.logo-mark{width:32px;height:32px}.top-ig{font-size:12.5px}}
+.brand{white-space:nowrap}
+@media (max-width:360px){.ig-txt{display:none}.top-ig{padding:0 5px}}
+.float::before{content:"";position:absolute;inset:0;border-radius:50%;animation:zap-pulso 2.4s ease-out infinite}
+@keyframes zap-pulso{0%{box-shadow:0 0 0 0 rgba(31,168,85,.55)}70%{box-shadow:0 0 0 18px rgba(31,168,85,0)}100%{box-shadow:0 0 0 0 rgba(31,168,85,0)}}
+.card{transition:transform .2s,box-shadow .2s}.card:hover{transform:translateY(-3px);box-shadow:0 18px 40px -20px rgba(10,35,66,.35)}
+@media (prefers-reduced-motion:reduce){.float::before,.card{animation:none;transition:none}}
 """
 
 
